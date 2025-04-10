@@ -29,4 +29,18 @@ class LtiNamesRolesProvisioningService extends LtiAbstractService
 
         return $this->getAll($request, 'members');
     }
+
+    public function getContext(): array
+    {
+        $url = Helpers::buildUrlWithQueryParams($this->getServiceData()['context_memberships_url'],['limit'=>'1']);
+
+        $request = new ServiceRequest(
+          ServiceRequest::METHOD_GET,
+          $url,
+          ServiceRequest::TYPE_GET_MEMBERSHIPS
+        );
+        $request->setAccept(static::CONTENTTYPE_MEMBERSHIPCONTAINER);
+        $response = $this->makeServiceRequest($request);
+        return $response['body']['context'];
+    }
 }
