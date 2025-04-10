@@ -56,4 +56,20 @@ class LtiNamesRolesProvisioningServiceTest extends TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testItGetsContext()
+    {
+        $expected = ['context'];
+
+        $nrps = new LtiNamesRolesProvisioningService($this->connector, $this->registration, [
+            'context_memberships_url' => 'url',
+        ]);
+        $this->connector->shouldReceive('makeServiceRequest')
+            ->once()->andReturn($expected);
+
+        $result = $nrps->getContext();
+        echo json_encode($result);
+        $this->assertEquals($expected, $result);
+    }
+
 }
