@@ -59,16 +59,19 @@ class LtiNamesRolesProvisioningServiceTest extends TestCase
 
     public function testItGetsContext()
     {
-        $expected = ['context'];
+        $expected = ['id'=>'',
+                     'errors'=>'No context provided in NRPS response'];
 
         $nrps = new LtiNamesRolesProvisioningService($this->connector, $this->registration, [
             'context_memberships_url' => 'url',
         ]);
         $this->connector->shouldReceive('makeServiceRequest')
+            ->withArgs(function ($registration, $scope, $request) {
+                return $request->getUrl() === 'url?limit=1';
+            })
             ->once()->andReturn($expected);
 
         $result = $nrps->getContext();
-        echo json_encode($result);
         $this->assertEquals($expected, $result);
     }
 
