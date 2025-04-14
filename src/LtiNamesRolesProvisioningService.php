@@ -46,7 +46,7 @@ class LtiNamesRolesProvisioningService extends LtiAbstractService
         } else {
             return [
                 'id'=>'',
-                'errors'=>'No context provided in NRPS response'
+                'errors'=>'No context provided in NRPS response',
             ];
         }
     }
