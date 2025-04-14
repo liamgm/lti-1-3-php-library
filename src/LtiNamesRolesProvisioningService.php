@@ -41,6 +41,11 @@ class LtiNamesRolesProvisioningService extends LtiAbstractService
         );
         $request->setAccept(static::CONTENTTYPE_MEMBERSHIPCONTAINER);
         $response = $this->makeServiceRequest($request);
-        return $response['body']['context'];
+        if (array_key_exists('context',$response['body'])) {
+            return $response['body']['context'];
+        } else {
+            return ['id'=>'',
+                    'errors'=>'No context provided in NRPS response'];
+        }
     }
 }
