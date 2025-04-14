@@ -41,7 +41,7 @@ class LtiNamesRolesProvisioningService extends LtiAbstractService
         );
         $request->setAccept(static::CONTENTTYPE_MEMBERSHIPCONTAINER);
         $response = $this->makeServiceRequest($request);
-        if (array_key_exists('context',$response['body'])) {
+        if (array_key_exists('body',$response) && array_key_exists('context',$response['body'])) {
             return $response['body']['context'];
         } else {
             return ['id'=>'',
