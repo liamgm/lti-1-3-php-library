@@ -60,8 +60,8 @@ class LtiNamesRolesProvisioningServiceTest extends TestCase
     public function testItGetsContext()
     {
         $expected = [
-            'id'=>'',
-            'errors'=>'No context provided in NRPS response',
+            'id' => '',
+            'errors' => 'No context provided in NRPS response',
         ];
 
         $nrps = new LtiNamesRolesProvisioningService($this->connector, $this->registration, [

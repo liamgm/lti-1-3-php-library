@@ -32,12 +32,12 @@ class LtiNamesRolesProvisioningService extends LtiAbstractService
 
     public function getContext(): array
     {
-        $url = Helpers::buildUrlWithQueryParams($this->getServiceData()['context_memberships_url'], ['limit'=>'1']);
+        $url = Helpers::buildUrlWithQueryParams($this->getServiceData()['context_memberships_url'], ['limit' => '1']);
 
         $request = new ServiceRequest(
-          ServiceRequest::METHOD_GET,
-          $url,
-          ServiceRequest::TYPE_GET_MEMBERSHIPS
+            ServiceRequest::METHOD_GET,
+            $url,
+            ServiceRequest::TYPE_GET_MEMBERSHIPS
         );
         $request->setAccept(static::CONTENTTYPE_MEMBERSHIPCONTAINER);
         $response = $this->makeServiceRequest($request);
@@ -45,8 +45,8 @@ class LtiNamesRolesProvisioningService extends LtiAbstractService
             return $response['body']['context'];
         } else {
             return [
-                'id'=>'',
-                'errors'=>'No context provided in NRPS response',
+                'id' => '',
+                'errors' => 'No context provided in NRPS response',
             ];
         }
     }
